@@ -1,24 +1,31 @@
-# README
+# タスク管理アプリ
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+##テーブルイメージ
 
-* Ruby version
+###User
+```
+create_table "user"
+    string   "name"
+    integer  "id"
+    string   "email"
+    datetime "created_at", null: false
+    datetime "updated_at", null: false
+end
+```
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+###Task
+```
+create_table "tasks"
+    string   "title"
+    text    "content"
+    string  "label"
+    string  "priority"
+    string  "status"
+    datetime "deadline_date"
+    integer  "user_id",    null: false
+    datetime "created_at", null: false
+    datetime "updated_at", null: false
+    index ["user_id"]
+end
+```
