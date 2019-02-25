@@ -1,9 +1,9 @@
 # タスク管理アプリ
 
 
-##テーブルイメージ
+## テーブルイメージ
 
-###User
+### User
 ```
 create_table "user"
     string   "name"
@@ -14,7 +14,7 @@ create_table "user"
 end
 ```
 
-###Task
+### Task
 ```
 create_table "tasks"
     string   "title"
