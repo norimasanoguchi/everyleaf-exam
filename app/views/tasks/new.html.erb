@@ -1,0 +1,22 @@
+<h1>タスク投稿画面</h1>
+
+<%= render 'errormsg' %>
+
+<%= form_with(model: @task, local: true) do |form| %>
+  <p><%= form.label :title %>
+  <%= form.text_field :title %></p>
+
+  <p><%= form.label :content %>
+  <%= form.text_area :content %></p>
+
+  <p><%= form.label :label %>
+  <%= form.text_field :label %></p>
+
+  <p><%= form.label :status %>
+  <%= form.text_field :status %></p>
+
+  <p><%= form.label :priority %>
+  <%= form.text_field :priority %></p>
+
+  <p><%= form.submit %></p>
+<% end %>
