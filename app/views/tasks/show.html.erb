@@ -1,9 +1,10 @@
-<h1>タスク詳細</h1>
+<h1><%= t("show_page.top_h1") %></h1>
 
-<p><strong>タイトル:</strong><%= @task.title %></p>
-<p><strong>内容:</strong><%= @task.content %></p>
-<p><strong>ラベル:</strong><%= @task.label %></p>
-<p><strong>ステータス:</strong><%= @task.status %></p>
-<p><strong>優先順位:</strong><%= @task.priority %></p>
 
-<p><%= link_to("編集する", edit_task_path(@task.id)) %> | <%= link_to("ホームに戻る", tasks_path) %></p> 
+<p><strong><%= Task.human_attribute_name :title %>:</strong><%= @task.title %></p>
+<p><strong><%= Task.human_attribute_name :content %>:</strong><%= @task.content %></p>
+<p><strong><%= Task.human_attribute_name :label %>:</strong><%= @task.label %></p>
+<p><strong><%= Task.human_attribute_name :status %>:</strong><%= @task.status %></p>
+<p><strong><%= Task.human_attribute_name :priority %>:</strong><%= @task.priority %></p>
+
+<p><%= link_to(t("menu.edit"), edit_task_path(@task.id)) %> | <%= link_to(t("menu.return_to_home"), tasks_path) %></p>
