@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "タスク管理機能", type: :feature do
-  let(:tasks) { page.all('.task_title') }
+  # let(:tasks) { page.all('.task_title') }
 
   feature "タスクをあらかじめ作成するタスク" do
     background do
@@ -16,8 +16,10 @@ RSpec.feature "タスク管理機能", type: :feature do
     end
 
     scenario "タスク一覧が作成日順に並んでいるかテスト" do
-      expect(tasks[1]).to eq('test_task_01')
-      # expect(tasks[1]).to eq('test_task_02')
+      visit tasks_path
+      task_titles = page.all('.task_title').map(&:text)
+      expect(task_titles[0]).to eq('test_task_02')
+      expect(task_titles[1]).to eq('test_task_01')
     end
 
    end
