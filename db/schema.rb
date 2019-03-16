@@ -1,10 +1,10 @@
-ActiveRecord::Schema.define(version: 2019_03_05_101306) do
+ActiveRecord::Schema.define(version: 2019_03_12_124256) do
 
   enable_extension "plpgsql"
 
   create_table "tasks", force: :cascade do |t|
-    t.string "title"
-    t.text "content"
+    t.string "title", null: false
+    t.string "content", null: false
     t.string "label"
     t.string "priority"
     t.string "status"

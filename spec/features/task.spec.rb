@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.feature "タスク管理機能", type: :feature do
-  # let(:tasks) { page.all('.task_title') }
 
   feature "タスクをあらかじめ作成するタスク" do
     background do
@@ -38,6 +37,28 @@ RSpec.feature "タスク管理機能", type: :feature do
     test_task = FactoryBot.create(:task)
     visit task_path(test_task)
     expect(page).to have_content('test_task_title','test_content_title')
+  end
+
+  feature "バリデーション関連のテスト" do
+
+  scenario "titleが空ならバリデーションが通らない" do
+    test_task = FactoryBot.build(:task, title: '',content: 'testtesttest' )
+    test_task.valid?
+    expect(test_task.errors[:title]).to include("を入力してください")
+  end
+
+  scenario "contentが空ならバリデーションが通らない" do
+    test_task = FactoryBot.build(:task, title: 'testtest',content: '' )
+    test_task.valid?
+    expect(test_task.errors[:content]).to include("を入力してください")
+  end
+
+  scenario "titleとcontentに内容が記載されていればバリデーションが通る" do
+    test_task = FactoryBot.create(:task, title: 'testtest',content: 'testtesttest' )
+    test_task.valid?
+    expect(test_task).to be_valid
+  end
+
   end
 
 end
