@@ -2,7 +2,6 @@ require_relative 'boot'
 
 require 'rails/all'
 
-
 Bundler.require(*Rails.groups)
 
 module EveryleafExam
@@ -17,6 +16,8 @@ module EveryleafExam
         controller_specs: false,
         request_specs: false
         g.fixture_replacement :factory_bot, dir: "spec/factories"
+      config.time_zone = 'Tokyo'
+      config.active_record.default_timezone = :local
       end
   end
 end

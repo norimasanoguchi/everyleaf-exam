@@ -1,0 +1,18 @@
+ja:
+  index_page:
+    top_h1: タスク一覧
+    confirm_register: タスクを登録する
+  new_page:
+    top_h1: タスク投稿画面
+  show_page:
+    top_h1: タスク詳細
+  edit_page:
+    top_h1: タスク編集画面
+  menu:
+    edit: 編集
+    delete: 削除
+    show: 詳細
+    return_to_home: ホームに戻る
+  notice:
+    confirm_delete: 本当に削除してもいいですか？
+    errors: 件のエラーがあります

@@ -1,27 +1,27 @@
-<h1>タスク一覧</h1>
+<h1><%= t("index_page.top_h1") %></h1>
 
 <table>
   <tr>
-    <th>タイトル</th>
-    <th>内容</th>
-    <th>ラベル</th>
-    <th>ステータス</th>
-    <th>優先順位</th>
+    <th><%= Task.human_attribute_name :title %> </th>
+    <th><%= Task.human_attribute_name :content %> </th>
+    <th><%= Task.human_attribute_name :label %></th>
+    <th><%= Task.human_attribute_name :status %></th>
+    <th><%= Task.human_attribute_name :priority %></th>
   </tr>
 
 
   <% @tasks.each do |task| %>
-    <tr>
-      <td><%= task.title %></td>
+      <tr>
+      <td class="task_title"><%= task.title %></td>
       <td><%= task.content %></td>
       <td><%= task.label %></td>
       <td><%= task.status %></td>
       <td><%= task.priority %></td>
-      <td><%= link_to('詳細', task_path(task.id)) %></td>
-      <td><%= link_to('編集', edit_task_path(task.id)) %></td>
-      <td><%= link_to('削除', task_path(task.id), method: :delete, data: {confirm: "本当に削除してもいいですか？"}) %></td>
+      <td><%= link_to(t("menu.show"), task_path(task.id)) %></td>
+      <td><%= link_to(t("menu.edit"), edit_task_path(task.id)) %></td>
+      <td><%= link_to(t("menu.delete"), task_path(task.id), method: :delete, data: {confirm: t("notice.confirm_delete")}) %></td>
     </tr>
   <% end %>
 </table>
 
-<p><%= link_to('タスクを登録する', new_task_path) %></p>
+<p><%= link_to(t("index_page.confirm_register"), new_task_path) %></p>
