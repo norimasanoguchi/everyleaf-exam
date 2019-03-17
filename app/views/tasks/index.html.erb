@@ -7,6 +7,7 @@
     <th><%= Task.human_attribute_name :label %></th>
     <th><%= Task.human_attribute_name :status %></th>
     <th><%= Task.human_attribute_name :priority %></th>
+    <th><%= Task.human_attribute_name :expiration_at %></th>
   </tr>
 
 
@@ -17,6 +18,7 @@
       <td><%= task.label %></td>
       <td><%= task.status %></td>
       <td><%= task.priority %></td>
+      <td><%= task.expiration_at.strftime('%Y/%m/%d') %></td>
       <td><%= link_to(t("menu.show"), task_path(task.id)) %></td>
       <td><%= link_to(t("menu.edit"), edit_task_path(task.id)) %></td>
       <td><%= link_to(t("menu.delete"), task_path(task.id), method: :delete, data: {confirm: t("notice.confirm_delete")}) %></td>
@@ -25,3 +27,5 @@
 </table>
 
 <p><%= link_to(t("index_page.confirm_register"), new_task_path) %></p>
+
+<p><%= link_to(t("index_page.sort_expire_at"), tasks_path(sort_expired: "true")) %></p>

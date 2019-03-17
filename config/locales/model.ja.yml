@@ -10,6 +10,7 @@ ja:
         label: "ラベル"
         status: "ステータス"
         priority: "優先度"
+        expiration_at: "終了期限"
       user:
         title: "タイトル"
         name: "名前"

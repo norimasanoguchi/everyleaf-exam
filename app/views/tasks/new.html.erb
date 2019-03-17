@@ -18,5 +18,8 @@
   <p><%= form.label :priority %>
   <%= form.text_field :priority %></p>
 
+  <p><%= form.label :expiration_at %>
+  <%= form.date_select :expiration_at, default:(Date.today+7) %></p>
+
   <p><%= form.submit %></p>
 <% end %>
