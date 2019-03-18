@@ -17,3 +17,7 @@ ja:
   notice:
     confirm_delete: 本当に削除してもいいですか？
     errors: 件のエラーがあります
+  status:
+    waiting: 未着手
+    working: 着手中
+    completed: 完了

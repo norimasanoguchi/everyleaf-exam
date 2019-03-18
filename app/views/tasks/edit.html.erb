@@ -12,6 +12,9 @@
   <%= form.label :label %>
   <%= form.text_field :label %>
 
+  <%= form.label :status %>
+  <%= form.select :status,[[t("status.waiting"), "未着手"], [t("status.working"), "着手中"], [t("status.completed"), "完了"]] %>
+
   <%= form.label :priority %>
   <%= form.text_field :priority %>
 
