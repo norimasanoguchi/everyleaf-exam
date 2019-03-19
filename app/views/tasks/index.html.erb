@@ -1,11 +1,11 @@
 <h1><%= t("index_page.top_h1") %></h1>
 
 <%= form_with url:tasks_path, method: :get, local: true do |f| %>
-  <%= f.label :task_title_serch, :title_search %>
+  <%= f.label :title_search, t("index_page.title_search") %>
   <%= f.text_field :title_search %>
-  <%= f.label :task_status_search, :status_search %>
+  <%= f.label :status_search, t("index_page.status_search") %>
   <%= f.select :status_search, [[t("status.waiting"), "未着手"], [t("status.working"), "着手中"], [t("status.completed"), "完了"]] %>
-  <%= f.submit %>
+  <%= f.submit t("index_page.search") %>
 
   <%= f.hidden_field :search, value: 'true' %>
 
