@@ -3,6 +3,10 @@ ja:
     top_h1: タスク一覧
     confirm_register: タスクを登録する
     sort_expire_at: 終了期限でソートする
+    title_search: タイトルで検索する
+    status_search: ステータスで検索する
+    search: 検索する
+    clear: クリアする
   new_page:
     top_h1: タスク投稿画面
   show_page:
