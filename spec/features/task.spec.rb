@@ -4,9 +4,9 @@ RSpec.feature "タスク管理機能", type: :feature do
 
   feature "タスクをあらかじめ作成するタスク" do
     background do
-      FactoryBot.create(:task, title: 'test_task_01',content: 'testtesttest',expiration_at: '2019_03_03_051550', status: '未着手')
-      FactoryBot.create(:task, title: 'test_task_02',content: 'samplesample',expiration_at: '2019_02_02_051550', status: '着手中')
-      FactoryBot.create(:task, title: 'test_task_03',content: 'samplesample',expiration_at: '2019_01_01_051550', status: '完了')
+      FactoryBot.create(:task, title: 'test_task_01',content: 'testtesttest',expiration_at: '2019_03_03_051550', status: '未着手', priority: :中)
+      FactoryBot.create(:task, title: 'test_task_02',content: 'samplesample',expiration_at: '2019_02_02_051550', status: '着手中', priority: :低)
+      FactoryBot.create(:task, title: 'test_task_03',content: 'samplesample',expiration_at: '2019_01_01_051550', status: '完了', priority: :高)
     end
 
     scenario "タスク一覧のテスト" do
@@ -31,6 +31,15 @@ RSpec.feature "タスク管理機能", type: :feature do
       expect(task_titles[1]).to eq('test_task_02')
       expect(task_titles[2]).to eq('test_task_03')
     end
+    scenario "タスク一覧が優先順位で降順並んでいるかテスト" do
+      visit tasks_path
+      click_on '優先順位でソートする'
+      task_titles = page.all('.task_title').map(&:text)
+      expect(task_titles[0]).to eq('test_task_03')
+      expect(task_titles[1]).to eq('test_task_01')
+      expect(task_titles[2]).to eq('test_task_02')
+    end
+
    end
 
   feature "検索機能のテスト" do

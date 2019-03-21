@@ -13,7 +13,7 @@ class TasksController < ApplicationController
         @tasks = Task.status_search(params[:status_search])
       end
     elsif params[:sort_priority]
-      @tasks = Task.all.order("priority DESC")
+      @tasks = Task.all.order("priority ASC")
     else
       @tasks = Task.all.order_created_desc
     end
@@ -38,7 +38,6 @@ class TasksController < ApplicationController
   end
 
   def update
-
     if @task.update(task_params)
       redirect_to(tasks_path, notice:"編集しました")
     else
