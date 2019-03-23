@@ -3,19 +3,19 @@ class TasksController < ApplicationController
 
   def index
     if params[:sort_expired]
-      @tasks = Task.all.order("expiration_at DESC")
+      @tasks = Task.order("expiration_at DESC").page(params[:page]).per(PER)
     elsif params[:search]
       if params[:title_search]&&params[:status_search]
-        @tasks = Task.title_search(params[:title_search]).status_search(params[:status_search])
+        @tasks = Task.title_search(params[:title_search]).status_search(params[:status_search]).page(params[:page]).per(PER)
       elsif params[:title_search]
-        @tasks = Task.title_search(params[:title_search])
+        @tasks = Task.title_search(params[:title_search]).page(params[:page]).per(PER)
       elsif params[:task_search]
-        @tasks = Task.status_search(params[:status_search])
+        @tasks = Task.status_search(params[:status_search]).page(params[:page]).per(PER)
       end
     elsif params[:sort_priority]
-      @tasks = Task.all.order("priority ASC")
+      @tasks = Task.order("priority ASC").page(params[:page]).per(PER)
     else
-      @tasks = Task.all.order_created_desc
+      @tasks = Task.order_created_desc.page(params[:page]).per(PER)
     end
   end
 
@@ -63,5 +63,7 @@ class TasksController < ApplicationController
   def set_task
     @task = Task.find(params[:id])
   end
+
+  PER = 5
 
 end

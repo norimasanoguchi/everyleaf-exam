@@ -78,6 +78,32 @@ RSpec.feature "タスク管理機能", type: :feature do
     end
   end
 
+  feature "Kaminariのテスト" do
+    background do
+      FactoryBot.create(:task, title: 'test01', content: 'test01', status: '未着手', id: '1')
+      FactoryBot.create(:task, title: 'test01' ,content: 'test01', status: '着手中', id: '2')
+      FactoryBot.create(:task, title: 'test01' ,content: 'test01', status: '着手中', id: '3')
+      FactoryBot.create(:task, title: 'test01' ,content: 'test01', status: '未着手', id: '4')
+      FactoryBot.create(:task, title: 'test01' ,content: 'test01', status: '未着手', id: '5')
+      FactoryBot.create(:task, title: 'test01' ,content: 'test01', status: '未着手', id: '6')
+      FactoryBot.create(:task, title: 'test01' ,content: 'test01', status: '未着手', id: '7')
+    end
+
+    scenario "トップ画面でページネーションされてるかテスト" do
+      visit tasks_path
+      /id6,7が含まれてないことを確認したい→タスク一覧情報を取得する処理？/
+      task_titles = page.all('.task_title').map(&:text)
+      expect(task_titles).to eq(['test01','test03'])
+    end
+
+    scenario "タイトル検索時にページネーションできてるかテスト" do
+      visit tasks_path
+      fill_in 'タイトルで検索する', with: ''
+      select '未着手', from: 'ステータスで検索する'
+      click_on '検索する'
+      task_titles = page.all('.task_title').map(&:text)
+      expect(task_titles).to eq(['test01','test03'])
+    end
 
   scenario "タスク作成のテスト" do
     visit new_task_path
