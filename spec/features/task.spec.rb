@@ -61,11 +61,10 @@ RSpec.feature "タスク管理機能", type: :feature do
 
     scenario "タイトルで検索できるかテスト" do
       visit tasks_path
-      fill_in 'タイトルで検索する', with: 'test'
-      select '着手中', from: 'ステータスで検索する'
+      fill_in 'タイトルで検索する', with: 'test03'
       click_on '検索する'
       task_titles = page.all('.task_title').map(&:text)
-      expect(task_titles).to eq(['test01','test02'])
+      expect(task_titles).to eq(['test03'])
     end
 
     scenario "ステータスで検索できるかテスト" do
