@@ -149,5 +149,4 @@ RSpec.feature "タスク管理機能", type: :feature do
       expect(test_task).to be_valid
     end
   end
-
 end
