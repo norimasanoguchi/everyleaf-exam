@@ -4,9 +4,12 @@ RSpec.feature "タスク管理機能", type: :feature do
 
   feature "タスクをあらかじめ作成するタスク" do
     background do
-      FactoryBot.create(:task, title: 'test_task_01',content: 'testtesttest',expiration_at: '2019_03_03_051550', status: '未着手', priority: :中)
-      FactoryBot.create(:task, title: 'test_task_02',content: 'samplesample',expiration_at: '2019_02_02_051550', status: '着手中', priority: :低)
-      FactoryBot.create(:task, title: 'test_task_03',content: 'samplesample',expiration_at: '2019_01_01_051550', status: '完了', priority: :高)
+      # FactoryBot.create(:task, title: 'test_task_01',content: 'testtesttest',expiration_at: '2019_03_03_051550', status: '未着手', priority: :中)
+      # FactoryBot.create(:task, title: 'test_task_02',content: 'samplesample',expiration_at: '2019_02_02_051550', status: '着手中', priority: :低)
+      # FactoryBot.create(:task, title: 'test_task_03',content: 'samplesample',expiration_at: '2019_01_01_051550', status: '完了', priority: :高)
+      FactoryBot.create(:task, title: 'test_task_01',content: 'testtesttest',expiration_at: '2019_03_03', status: '未着手', priority: :中)
+      FactoryBot.create(:task, title: 'test_task_02',content: 'samplesample',expiration_at: '2019_02_02', status: '着手中', priority: :低)
+      FactoryBot.create(:task, title: 'test_task_03',content: 'samplesample',expiration_at: '2019_01_01', status: '完了', priority: :高)
     end
 
     scenario "タスク一覧のテスト" do
