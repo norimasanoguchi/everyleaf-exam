@@ -27,3 +27,11 @@ ja:
     waiting: 未着手
     working: 着手中
     completed: 完了
+  sign_in_page:
+    title: アカウント登録
+  log_in_page:
+    title: ログイン
+    failed_login: ログインに失敗しました
+    logged_out: ログアウトしました
+  user_show_page:
+    title: マイページ

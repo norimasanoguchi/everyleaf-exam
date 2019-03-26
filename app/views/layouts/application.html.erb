@@ -24,6 +24,15 @@
             <li class="nav-item active">
               <%= link_to(t("index_page.confirm_register"), new_task_path, class: "nav-link" ) %>
             </li>
+            <% if logged_in? %>
+              <li class="nav-item active">
+                <%= link_to(t("log_in_page.title"), new_session_path, class: "nav-link" ) %>
+              </li>
+            <% else %>
+            <li class="nav-item active">
+              <%= link_to(t("log_in_page.title"), new_session_path, class: "nav-link" ) %>
+            </li>
+            <% end %>
         </div>
       </nav>
       <% flash.each do |key, value| %>
