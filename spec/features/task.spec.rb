@@ -1,15 +1,19 @@
 require 'rails_helper'
 
 RSpec.feature "タスク管理機能", type: :feature do
+ background do
+   @user02 = FactoryBot.create(:user, name: 'test02', email: 'test02@test.com', password: 'password')
+   visit new_session_path
+   fill_in 'Email', with: 'test02@test.com'
+   fill_in 'Password', with: 'password'
+   click_on '保存する'
+ end
 
   feature "タスクをあらかじめ作成するタスク" do
     background do
-      # FactoryBot.create(:task, title: 'test_task_01',content: 'testtesttest',expiration_at: '2019_03_03_051550', status: '未着手', priority: :中)
-      # FactoryBot.create(:task, title: 'test_task_02',content: 'samplesample',expiration_at: '2019_02_02_051550', status: '着手中', priority: :低)
-      # FactoryBot.create(:task, title: 'test_task_03',content: 'samplesample',expiration_at: '2019_01_01_051550', status: '完了', priority: :高)
-      FactoryBot.create(:task, title: 'test_task_01',content: 'testtesttest',expiration_at: '2019_03_03', status: '未着手', priority: :中)
-      FactoryBot.create(:task, title: 'test_task_02',content: 'samplesample',expiration_at: '2019_02_02', status: '着手中', priority: :低)
-      FactoryBot.create(:task, title: 'test_task_03',content: 'samplesample',expiration_at: '2019_01_01', status: '完了', priority: :高)
+      FactoryBot.create(:task, title: 'test_task_01',content: 'testtesttest',expiration_at: '2019_03_03', status: '未着手', priority: :中,user_id: @user02.id)
+      FactoryBot.create(:task, title: 'test_task_02',content: 'samplesample',expiration_at: '2019_02_02', status: '着手中', priority: :低,user_id: @user02.id)
+      FactoryBot.create(:task, title: 'test_task_03',content: 'samplesample',expiration_at: '2019_01_01', status: '完了', priority: :高,user_id: @user02.id)
     end
 
     scenario "タスク一覧のテスト" do
@@ -47,10 +51,10 @@ RSpec.feature "タスク管理機能", type: :feature do
 
   feature "検索機能のテスト" do
     background do
-      FactoryBot.create(:task, title: 'test01', content: 'test01', status: '未着手', id: '1')
-      FactoryBot.create(:task, title: 'test01' ,content: 'test01', status: '着手中', id: '2')
-      FactoryBot.create(:task, title: 'test02' ,content: 'test01', status: '着手中', id: '3')
-      FactoryBot.create(:task, title: 'test03' ,content: 'test01', status: '未着手', id: '4')
+      FactoryBot.create(:task, title: 'test01', content: 'test01', status: '未着手', id: '1',user_id: @user02.id)
+      FactoryBot.create(:task, title: 'test01' ,content: 'test01', status: '着手中', id: '2',user_id: @user02.id)
+      FactoryBot.create(:task, title: 'test02' ,content: 'test01', status: '着手中', id: '3',user_id: @user02.id)
+      FactoryBot.create(:task, title: 'test03' ,content: 'test01', status: '未着手', id: '4',user_id: @user02.id)
     end
 
     scenario "タイトルとステータスで検索できるかテスト" do
@@ -82,18 +86,17 @@ RSpec.feature "タスク管理機能", type: :feature do
 
   feature "Kaminariのテスト" do
     background do
-      FactoryBot.create(:task, title: 'test01', content: 'test01', status: '未着手', id: '1')
-      FactoryBot.create(:task, title: 'test01' ,content: 'test01', status: '未着手', id: '2')
-      FactoryBot.create(:task, title: 'test01' ,content: 'test01', status: '未着手', id: '3')
-      FactoryBot.create(:task, title: 'test01' ,content: 'test01', status: '未着手', id: '4')
-      FactoryBot.create(:task, title: 'test01' ,content: 'test01', status: '未着手', id: '5')
-      FactoryBot.create(:task, title: 'test01' ,content: 'test01', status: '未着手', id: '6')
-      FactoryBot.create(:task, title: 'test02' ,content: 'test01', status: '未着手', id: '7')
+      FactoryBot.create(:task, title: 'test01', content: 'test01', status: '未着手', id: '1',user_id: @user02.id)
+      FactoryBot.create(:task, title: 'test01' ,content: 'test01', status: '未着手', id: '2',user_id: @user02.id)
+      FactoryBot.create(:task, title: 'test01' ,content: 'test01', status: '未着手', id: '3',user_id: @user02.id)
+      FactoryBot.create(:task, title: 'test01' ,content: 'test01', status: '未着手', id: '4',user_id: @user02.id)
+      FactoryBot.create(:task, title: 'test01' ,content: 'test01', status: '未着手', id: '5',user_id: @user02.id)
+      FactoryBot.create(:task, title: 'test01' ,content: 'test01', status: '未着手', id: '6',user_id: @user02.id)
+      FactoryBot.create(:task, title: 'test02' ,content: 'test01', status: '未着手', id: '7',user_id: @user02.id)
     end
 
     scenario "トップ画面でページネーションされてるかテスト" do
       visit tasks_path
-      /id6,7が含まれてないことを確認したい→タスク一覧情報を取得する処理？/
       task_titles = page.all('.task_title').map(&:text)
       expect(task_titles).not_to include(['test02'])
     end
@@ -126,7 +129,7 @@ RSpec.feature "タスク管理機能", type: :feature do
   end
 
   scenario "タスク詳細のテスト" do
-    test_task = FactoryBot.create(:task)
+    test_task = FactoryBot.create(:task,user_id: @user02.id)
     visit task_path(test_task)
     expect(page).to have_content('test_task_title','test_content_title')
   end

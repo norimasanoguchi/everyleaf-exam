@@ -35,3 +35,9 @@ ja:
     logged_out: ログアウトしました
   user_show_page:
     title: マイページ
+    name: ユーザー名
+  headear:
+    login: ログイン
+    logout: ログアウト
+    signin: サインイン
+    profile: アカウント詳細
