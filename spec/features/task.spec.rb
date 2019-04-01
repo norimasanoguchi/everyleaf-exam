@@ -4,9 +4,9 @@ RSpec.feature "タスク管理機能", type: :feature do
 
   feature "タスクをあらかじめ作成するタスク" do
     background do
-      FactoryBot.create(:task, title: 'test_task_01',content: 'testtesttest',expiration_at: '2019_03_03_051550')
-      FactoryBot.create(:task, title: 'test_task_02',content: 'samplesample',expiration_at: '2019_02_02_051550')
-      FactoryBot.create(:task, title: 'test_task_03',content: 'samplesample',expiration_at: '2019_01_01_051550')
+      FactoryBot.create(:task, title: 'test_task_01',content: 'testtesttest',expiration_at: '2019_03_03_051550', status: '未着手')
+      FactoryBot.create(:task, title: 'test_task_02',content: 'samplesample',expiration_at: '2019_02_02_051550', status: '着手中')
+      FactoryBot.create(:task, title: 'test_task_03',content: 'samplesample',expiration_at: '2019_01_01_051550', status: '完了')
     end
 
     scenario "タスク一覧のテスト" do
@@ -31,8 +31,44 @@ RSpec.feature "タスク管理機能", type: :feature do
       expect(task_titles[1]).to eq('test_task_02')
       expect(task_titles[2]).to eq('test_task_03')
     end
-
    end
+
+  feature "検索機能のテスト" do
+    background do
+      FactoryBot.create(:task, title: 'test01', content: 'test01', status: '未着手', id: '1')
+      FactoryBot.create(:task, title: 'test01' ,content: 'test01', status: '着手中', id: '2')
+      FactoryBot.create(:task, title: 'test02' ,content: 'test01', status: '着手中', id: '3')
+      FactoryBot.create(:task, title: 'test03' ,content: 'test01', status: '未着手', id: '4')
+    end
+
+    scenario "タイトルとステータスで検索できるかテスト" do
+      visit tasks_path
+      fill_in 'タイトルで検索する', with: 'test01'
+      select '未着手', from: 'ステータスで検索する'
+      click_on '検索する'
+      task_titles = page.all('.task_title').map(&:text)
+      expect(task_titles).to eq(['test01'])
+    end
+
+    scenario "タイトルで検索できるかテスト" do
+      visit tasks_path
+      fill_in 'タイトルで検索する', with: 'test'
+      select '着手中', from: 'ステータスで検索する'
+      click_on '検索する'
+      task_titles = page.all('.task_title').map(&:text)
+      expect(task_titles).to eq(['test01','test02'])
+    end
+
+    scenario "タイトルで検索できるかテスト" do
+      visit tasks_path
+      fill_in 'タイトルで検索する', with: ''
+      select '未着手', from: 'ステータスで検索する'
+      click_on '検索する'
+      task_titles = page.all('.task_title').map(&:text)
+      expect(task_titles).to eq(['test01','test03'])
+    end
+  end
+
 
   scenario "タスク作成のテスト" do
     visit new_task_path
