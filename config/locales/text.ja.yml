@@ -19,6 +19,7 @@ ja:
     delete: 削除
     show: 詳細
     return_to_home: ホームに戻る
+    command: 操作
   notice:
     confirm_delete: 本当に削除してもいいですか？
     errors: 件のエラーがあります

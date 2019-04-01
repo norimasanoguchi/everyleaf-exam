@@ -2,24 +2,4 @@
 
 <%= render 'errormsg' %>
 
-<%= form_with( model: @task, local: true) do |form| %>
-  <%= form.label :title %>
-  <%= form.text_field :title %>
-
-  <%= form.label :content %>
-  <%= form.text_area :content %>
-
-  <%= form.label :label %>
-  <%= form.text_field :label %>
-
-  <%= form.label :status %>
-  <%= form.select :status,[[""],[t("status.waiting"), "未着手"], [t("status.working"), "着手中"], [t("status.completed"), "完了"]] %>
-
-  <%= form.label :priority %>
-  <%= form.select :priority, Task.priorities.keys %>
-
-  <%= form.label :expiration_at %>
-  <%= form.date_select :expiration_at, default:(Date.today+7) %>
-
-  <%= form.submit %>
-<% end %>
+<%= render 'form' %>
