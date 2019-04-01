@@ -13,10 +13,13 @@
   <%= form.text_field :label %></p>
 
   <p><%= form.label :status %>
-  <%= form.text_field :status %></p>
+  <%= form.select :status,[[t("status.waiting"), "未着手"], [t("status.working"), "着手中"], [t("status.completed"), "完了"]] %></p>
 
   <p><%= form.label :priority %>
   <%= form.text_field :priority %></p>
+
+  <p><%= form.label :expiration_at %>
+  <%= form.date_select :expiration_at, default:(Date.today+7) %></p>
 
   <p><%= form.submit %></p>
 <% end %>

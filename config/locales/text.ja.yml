@@ -2,6 +2,7 @@ ja:
   index_page:
     top_h1: タスク一覧
     confirm_register: タスクを登録する
+    sort_expire_at: 終了期限でソートする
   new_page:
     top_h1: タスク投稿画面
   show_page:
@@ -16,3 +17,7 @@ ja:
   notice:
     confirm_delete: 本当に削除してもいいですか？
     errors: 件のエラーがあります
+  status:
+    waiting: 未着手
+    working: 着手中
+    completed: 完了
