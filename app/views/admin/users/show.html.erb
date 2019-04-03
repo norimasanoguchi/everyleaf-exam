@@ -1,0 +1,14 @@
+<h1><%= t("show_page.top_h1") %></h1>
+<h1><%= t("user_show_page.title") %></h1>
+<table class="table">
+  <tbody>
+    <tr>
+      <th scope="row"><%= t("user_show_page.name") %></th>
+      <td><%= @user.name %></td>
+    </tr>
+    <tr>
+      <th scope="row">Email</th>
+      <td><%= @user.email %></td>
+    </tr>
+  </tbody>
+</table>
