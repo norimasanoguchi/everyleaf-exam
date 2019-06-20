@@ -1,0 +1,21 @@
+<h1>ラベル一覧</h1>
+
+<table class="table table-bordered">
+  <tr>
+    <th scope="col"><%= Label.human_attribute_name :label %> </th>
+    <th scope="col"><%= Label.human_attribute_name :created_at %> </th>
+    <th scope="col"></th>
+  </tr>
+
+  <% @labels.each do |label| %>
+      <tr>
+      <td><%= label.label %></td>
+      <td><%= label.created_at %></td>
+      <td><%= link_to("削除", admin_label_path(label.id), method: :delete, data: {confirm: t("notice.confirm_delete")}) %></td>
+    </tr>
+  <% end %>
+</table>
+
+<div class="row">
+  <div class="col-sm"><%= link_to("ラベル登録", new_admin_label_path, class: "btn btn-outline-primary") %></div>
+</div>

@@ -1,6 +1,8 @@
 class Admin::UsersController < ApplicationController
+  before_action :require_admin
+
   def index
-    @users = User.all.page(params[:page]).per(25)
+    @users = User.all.includes(:tasks).page(params[:page]).per(25)
   end
 
   def new
@@ -42,6 +44,11 @@ class Admin::UsersController < ApplicationController
   end
 
   private
+  def require_admin
+    # redirect_to root_path unless current_user.admin?
+    raise unless current_user.admin?
+  end
+
   def user_params
     params.require(:user).permit(:name, :email, :admin, :password, :password_confirmation)
   end

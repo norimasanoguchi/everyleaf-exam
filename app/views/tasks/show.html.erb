@@ -3,9 +3,17 @@
 
 <p><strong><%= Task.human_attribute_name :title %>:</strong><%= @task.title %></p>
 <p><strong><%= Task.human_attribute_name :content %>:</strong><%= @task.content %></p>
-<p><strong><%= Task.human_attribute_name :label %>:</strong><%= @task.label %></p>
 <p><strong><%= Task.human_attribute_name :status %>:</strong><%= @task.status %></p>
 <p><strong><%= Task.human_attribute_name :priority %>:</strong><%= @task.priority %></p>
 <p><strong><%= Task.human_attribute_name :expiration_at %>:</strong><%= @task.expiration_at %></p>
+
+
+<% if @labels.present? %>
+  <p><strong>ラベル:</strong>
+    <% @labels.each do |l| %>
+      <%= l.label %> 
+    <% end %>
+  </p>
+<% end %>
 
 <p><%= link_to(t("menu.edit"), edit_task_path(@task.id)) %> | <%= link_to(t("menu.return_to_home"), tasks_path) %></p>
