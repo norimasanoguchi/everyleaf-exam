@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
   skip_before_action :login_required
   def new
+    redirect_to(tasks_path, danger:"既にログインしています") if current_user.present?
   end
 
   def create
