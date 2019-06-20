@@ -1,8 +1,8 @@
-<% if @task.errors.any? %>
+<% if @user.errors.any? %>
   <div id ="error_explanation" class="alert alert-danger">
-    <h2><%= @task.errors.count %><%= t("notice.errors") %></h2>
+    <h2><%= @user.errors.count %><%= t("notice.errors") %></h2>
     <ul>
-      <% @task.errors.full_messages.each do |msg| %>
+      <% @user.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
     </ul>

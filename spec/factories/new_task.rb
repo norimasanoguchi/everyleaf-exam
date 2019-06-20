@@ -5,5 +5,6 @@ FactoryBot.define do
     expiration_at{''}
     status{''}
     id{''}
+    association :user, factory: :user
   end
 end
