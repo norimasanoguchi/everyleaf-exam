@@ -2,10 +2,11 @@ require 'rails_helper'
 
 RSpec.feature "タスク検索機能", type: :model do
   background do
-    FactoryBot.create(:task, title: 'test01', content: 'test01', status: '未着手', id: '1')
-    FactoryBot.create(:task, title: 'test01' ,content: 'test01', status: '着手中', id: '2')
-    FactoryBot.create(:task, title: 'test02' ,content: 'test01', status: '着手中', id: '3')
-    FactoryBot.create(:task, title: 'test03' ,content: 'test01', status: '完了', id: '4')
+    @user99 = FactoryBot.create(:user, name: 'test02', email: 'test099@test.com', password: 'password',id:99)
+    FactoryBot.create(:task, title: 'test01', content: 'test01', status: '未着手', id: '1',user_id:99)
+    FactoryBot.create(:task, title: 'test01' ,content: 'test01', status: '着手中', id: '2',user_id:99)
+    FactoryBot.create(:task, title: 'test02' ,content: 'test01', status: '着手中', id: '3',user_id:99)
+    FactoryBot.create(:task, title: 'test03' ,content: 'test01', status: '完了', id: '4',user_id:99)
     @tasks = Task.all
   end
 
