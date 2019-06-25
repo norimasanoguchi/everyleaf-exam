@@ -11,7 +11,7 @@ class User < ApplicationRecord
   def block_destroy
     @users = User.where(admin: true)
     if @users.count == 1
-      raise
+    raise
     end
   end
 end
