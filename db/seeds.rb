@@ -9,3 +9,8 @@
     password_confirmation: password
   )
 end
+
+Label.create!([
+                      {label: "ラベル1"},
+                      {label: "ラベル2"},
+                   ])
