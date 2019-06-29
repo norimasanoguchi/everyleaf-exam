@@ -18,8 +18,8 @@ RSpec.feature "タスク管理機能", type: :feature do
 
     scenario "タスク一覧のテスト" do
      visit tasks_path
-     expect(page).to have_content 'testtesttest'
-     expect(page).to have_content 'samplesample'
+     expect(page).to have_content 'test_task_01'
+     expect(page).to have_content 'test_task_02'
     end
 
     scenario "タスク一覧が作成日順に並んでいるかテスト" do

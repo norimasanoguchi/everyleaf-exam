@@ -1,0 +1,10 @@
+<% if @label.errors.any? %>
+  <div id ="error_explanation" class="alert alert-danger">
+    <h2><%= @label.errors.count %><%= t("notice.errors") %></h2>
+    <ul>
+      <% @label.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

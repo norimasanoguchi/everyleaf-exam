@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.1'
+ruby '2.6.3'
 
 gem 'rails', '~> 5.2.2'
 gem 'pg', '>= 0.18', '< 2.0'
@@ -17,13 +17,13 @@ gem 'faker'
 
 group :development, :test do
     gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+    gem 'dotenv-rails', groups: [:development, :test]
     gem "rspec-rails"
     gem 'spring-commands-rspec'
     gem "factory_bot_rails"
     gem 'faker'
     gem "database_cleaner"
     gem "launchy"
-    gem 'selenium-webdriver'
     gem 'pry-rails'
     gem 'better_errors'
     gem 'binding_of_caller'
@@ -38,6 +38,7 @@ end
 
 group :test do
   gem 'capybara', '>= 2.15'
+  gem 'capybara-webkit'
   gem 'selenium-webdriver'
   gem 'chromedriver-helper'
 end

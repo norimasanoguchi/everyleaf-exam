@@ -1,6 +1,8 @@
 class Admin::UsersController < ApplicationController
+  before_action :require_admin
+
   def index
-    @users = User.all.page(params[:page]).per(25)
+    @users = User.all.includes(:tasks).page(params[:page]).per(25)
   end
 
   def new
@@ -38,10 +40,19 @@ class Admin::UsersController < ApplicationController
   def destroy
       @user = User.find(params[:id])
       @user.destroy
-      redirect_to(admin_users_path, success: "ユーザー#{@user.name}を削除しました")
+      if @user.destroyed?
+        redirect_to(admin_users_path, success: "ユーザー#{@user.name}を削除しました")
+      else
+        redirect_to(admin_users_path, danger: "唯一の管理ユーザーです。管理ユーザーをすべて削除することはできません。")
+      end
   end
 
   private
+  def require_admin
+    redirect_to(root_path, alert: "管理権限のあるユーザーとしてログインしていません。アクセスするためには管理ユーザーとしてログインする必要があります。") unless current_user.admin?
+    # raise unless current_user.admin?
+  end
+
   def user_params
     params.require(:user).permit(:name, :email, :admin, :password, :password_confirmation)
   end

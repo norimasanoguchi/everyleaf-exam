@@ -7,6 +7,7 @@ Bundler.require(*Rails.groups)
 module EveryleafExam
   class Application < Rails::Application
       config.load_defaults 5.2
+      config.logger = Logger.new(STDOUT)
       config.generators do |g|
         g.test_framework :rspec,
         fixtures: true,
