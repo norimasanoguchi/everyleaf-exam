@@ -13,6 +13,7 @@ class TasksController < ApplicationController
       if params[:label_search].present?
         @task_ids = TasksLabel.all.label_id_search(params[:label_search]).pluck(:task_id)
         @tasks = Task.all.task_id_search(@task_ids).page(params[:page]).per(PER)
+        @tasks = current_user.tasks.task_id_search(@task_ids).page(params[:page]).per(PER)
       elsif params[:title_search].present? && params[:status_search].present?
         @tasks = current_user.tasks.title_search(params[:title_search]).status_search(params[:status_search]).page(params[:page]).per(PER)
       elsif params[:title_search].present?
