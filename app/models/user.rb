@@ -9,6 +9,8 @@ class User < ApplicationRecord
 
   private
   def block_delete_last_admin
-    throw :abort if User.where(admin:true).first == self
+    if User.where(admin:true).count == 1
+      throw :abort if User.where(admin:true).first == self
+    end
   end
 end
