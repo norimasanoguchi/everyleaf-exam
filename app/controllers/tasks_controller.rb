@@ -9,15 +9,24 @@ class TasksController < ApplicationController
 
     if params[:sort_expired]
       @tasks = current_user.tasks.order("expiration_at DESC").page(params[:page]).per(PER)
-    elsif params[:search]
-      if params[:label_search].present?
+    case params[:search]
+      when params[:label_search].present? then
         @task_ids = TasksLabel.all.label_id_search(params[:label_search]).pluck(:task_id)
         @tasks = Task.all.task_id_search(@task_ids).page(params[:page]).per(PER)
-      elsif params[:title_search].present? && params[:status_search].present?
+      when params[:label_search].present? && params[:status_search].present? then
+        @task_ids = TasksLabel.all.label_id_search(params[:label_search]).pluck(:task_id)
+        @tasks = Task.all.task_id_search(@task_ids).status_search(params[:status_search]).page(params[:page]).per(PER)
+      when params[:label_search].present? && params[:title_search].present? then
+        @task_ids = TasksLabel.all.label_id_search(params[:label_search]).pluck(:task_id)
+        @tasks = Task.all.task_id_search(@task_ids).tasks.title_search(params[:title_search]).page(params[:page]).per(PER)
+      when params[:label_search].present? && params[:title_search].present? && params[:status_search].present? then
+        @task_ids = TasksLabel.all.label_id_search(params[:label_search]).pluck(:task_id)
+        @tasks = Task.all.task_id_search(@task_ids).status_search(params[:status_search]).tasks.title_search(params[:title_search]).page(params[:page]).per(PER)
+      when params[:title_search].present? && params[:status_search].present? then
         @tasks = current_user.tasks.title_search(params[:title_search]).status_search(params[:status_search]).page(params[:page]).per(PER)
-      elsif params[:title_search].present?
+      when  params[:title_search].present? then
         @tasks = current_user.tasks.title_search(params[:title_search]).page(params[:page]).per(PER)
-      elsif params[:status_search].present?
+      when params[:status_search].present? then
         @tasks = current_user.tasks.status_search(params[:status_search]).page(params[:page]).per(PER)
       else
         @tasks = current_user.tasks.order_created_desc.page(params[:page]).per(PER)
