@@ -3,6 +3,7 @@
 ## 環境構築時のお願い
 ```
 $ yarn add jquery
+$ rails assets:precompile 
 ```
 の実行をお願いします。
 
