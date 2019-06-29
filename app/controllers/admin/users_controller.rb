@@ -49,8 +49,8 @@ class Admin::UsersController < ApplicationController
 
   private
   def require_admin
-    # redirect_to root_path unless current_user.admin?
-    raise unless current_user.admin?
+    redirect_to(root_path, alert: "管理権限のあるユーザーとしてログインしていません。アクセスするためには管理ユーザーとしてログインする必要があります。") unless current_user.admin?
+    # raise unless current_user.admin?
   end
 
   def user_params
