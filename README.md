@@ -2,9 +2,13 @@
 
 ## 環境構築時のお願い
 ```
-$ yarn add jquery
-$ rails assets:precompile 
+$ rails db:create
+$ rails db:migrate
 $ rails db:seed
+$ yarn install jquery
+$ rails assets:precompile
+$ rails s
+
 ```
 の実行をお願いします。
 
