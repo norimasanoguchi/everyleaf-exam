@@ -24,8 +24,6 @@ group :development, :test do
     gem 'faker'
     gem "database_cleaner"
     gem "launchy"
-    gem 'selenium-webdriver'
-    gem 'chromedriver-helper'
     gem 'pry-rails'
     gem 'better_errors'
     gem 'binding_of_caller'
@@ -41,6 +39,8 @@ end
 group :test do
   gem 'capybara', '>= 2.15'
   gem 'capybara-webkit'
+  gem 'selenium-webdriver'
+  gem 'chromedriver-helper'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
