@@ -34,7 +34,6 @@
 <table class="table table-bordered">
   <tr>
     <th scope="col"><%= Task.human_attribute_name :title %> </th>
-    <th scope="col"><%= Task.human_attribute_name :content %> </th>
     <th scope="col"><%= Task.human_attribute_name :status %></th>
     <th scope="col"><%= Task.human_attribute_name :priority %></th>
     <th scope="col"><%= Task.human_attribute_name :expiration_at %></th>
@@ -44,7 +43,6 @@
     <% @tasks.each do |task|  %>
         <tr>
         <td class="task_title"><%= task.title %></td>
-        <td><%= task.content %></td>
         <td><%= task.status %></td>
         <td><%= task.priority %></td>
         <td><%= task.expiration_at %></td>
