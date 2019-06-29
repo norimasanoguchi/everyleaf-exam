@@ -4,6 +4,7 @@
 ```
 $ yarn add jquery
 $ rails assets:precompile 
+$ rails db:seed
 ```
 の実行をお願いします。
 
