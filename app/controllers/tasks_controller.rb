@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:edit, :update, :destroy, :show]
   before_action :set_labels, only: [:new, :create,:edit, :update]
-
+ 
   def index
      # @labels_names = Label.all.map(&:label)
      @labels = Label.all.map{|t|[t.label,t.id]}
@@ -65,6 +65,7 @@ class TasksController < ApplicationController
   end
 
   private
+  
 
   def task_params
     params.require(:task).permit(:title, :content, :expiration_at, :priority, :status, { label_ids: [] })
