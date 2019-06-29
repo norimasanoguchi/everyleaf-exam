@@ -10,6 +10,5 @@ class User < ApplicationRecord
   private
   def block_delete_last_admin
     throw :abort if User.where(admin:true).first == self
-    # render 'index' ,alert:"唯一の管理ユーザーです。管理ユーザーをすべて削除することはできません。" 
   end
 end
