@@ -19,6 +19,8 @@ class TasksController < ApplicationController
         @tasks = current_user.tasks.title_search(params[:title_search]).page(params[:page]).per(PER)
       elsif params[:status_search].present?
         @tasks = current_user.tasks.status_search(params[:status_search]).page(params[:page]).per(PER)
+      else
+        @tasks = current_user.tasks.order_created_desc.page(params[:page]).per(PER)
       end
     elsif params[:sort_priority]
       @tasks = current_user.tasks.order("priority ASC").page(params[:page]).per(PER)
