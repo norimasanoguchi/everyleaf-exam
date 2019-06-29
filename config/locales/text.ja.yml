@@ -8,6 +8,10 @@ ja:
     status_search: ステータスで検索する
     search: 検索する
     clear: クリアする
+    login: ログイン
+    logout: ログアウト
+    signin: サインイン
+    profile: アカウント詳細
   new_page:
     top_h1: タスク投稿画面
   show_page:
@@ -36,8 +40,3 @@ ja:
   user_show_page:
     title: マイページ
     name: ユーザー名
-  headear:
-    login: ログイン
-    logout: ログアウト
-    signin: サインイン
-    profile: アカウント詳細
