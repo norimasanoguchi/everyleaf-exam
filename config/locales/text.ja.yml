@@ -38,5 +38,5 @@ ja:
     failed_login: ログインに失敗しました
     logged_out: ログアウトしました
   user_show_page:
-    title: マイページ
+    title: 詳細
     name: ユーザー名
